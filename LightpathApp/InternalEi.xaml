@@ -1,0 +1,239 @@
+﻿<!--
+*************************************************************************** 
+** (c) LightPoint Medical, 2015.  All rights reserved.   
+**  
+** This software is the property of LightPoint Medical and may 
+** not be copied or reproduced otherwise than on to a single hard disk for 
+** backup or archival purposes.  The source code is confidential  
+** information and must not be disclosed to third parties or used without  
+** the express written permission of LightPoint Medical. 
+**
+** Repository path  : $HeadURL: https://svn.sagentia.com/Lightpoint/Lightpath/trunk/SpecimenAnalyser/EngineeringInterface/UserControls/InternalEi.xaml $
+** Last committed   : $Revision: 828 $
+** Last changed by  : $Author: pna1 $
+** Last changed date: $Date: 2015-04-10 09:43:30 +0100 (Fri, 10 Apr 2015) $
+**
+**
+***************************************************************************
+-->
+<UserControl x:Class="LightpathApp.InternalEi"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LightpathApp"            
+             xmlns:sa="clr-namespace:LightPath.InstrumentModel;assembly=SpecimenAnalyserDriver"
+             mc:Ignorable="d" 
+             d:DesignHeight="810" d:DesignWidth="1048"
+             IsVisibleChanged="UserControl_IsVisibleChanged">
+
+
+    <Grid Height="810" Width="1048">
+        <Grid.Background>
+            <ImageBrush ImageSource="SimplifiedInstrumentDiagram.png" Stretch="None"/>
+        </Grid.Background>
+        <TextBlock x:Name="TextBlockFanStatus" HorizontalAlignment="Left" Height="24" Margin="73,84,0,0" TextWrapping="Wrap" Text="FanStatus" VerticalAlignment="Top" Width="76"/>
+        <TextBlock x:Name="TextBlockOnBoardTemp" HorizontalAlignment="Left" Height="26" Margin="292,46,0,0" TextWrapping="Wrap" Text="InternalTemperature" VerticalAlignment="Top" Width="197"/>
+        <TextBlock x:Name="TextBlockOffBoardTemp" HorizontalAlignment="Left" Height="26" Margin="292,77,0,0" TextWrapping="Wrap" Text="ExternalTemperature" VerticalAlignment="Top" Width="197"/>
+        <CheckBox x:Name="CheckBoxRefCamAutoGain" Content="Auto" HorizontalAlignment="Left" Margin="532,48,0,0" VerticalAlignment="Top" Click="CheckBoxRefCamAutoGain_Click"/>
+        <CheckBox x:Name="CheckBoxRefCamAutoExp" Content="Auto" HorizontalAlignment="Left" Margin="532,77,0,0" VerticalAlignment="Top" Click="CheckBoxRefCamAutoExp_Click"/>
+        <Button x:Name="ButtonFanOn" Content="Fan On" HorizontalAlignment="Left" Margin="69,30,0,0" VerticalAlignment="Top" Width="100" Click="ButtonFanOn_Click"/>
+        <Button x:Name="ButtonFanOff" Content="Fan Off" HorizontalAlignment="Left" Margin="70,57,0,0" VerticalAlignment="Top" Width="100" Click="ButtonFanOff_Click"/>
+        <Label Content="Gain:" HorizontalAlignment="Left" Margin="490,43,0,0" VerticalAlignment="Top"/>
+        <Label Content="Exposure:" HorizontalAlignment="Left" Margin="466,72,0,0" VerticalAlignment="Top"/>
+        <Slider x:Name="SliderRefCamGain" HorizontalAlignment="Left" Margin="586,47,0,0" VerticalAlignment="Top" Width="144" Maximum="100" ValueChanged="SliderRefCamGain_ValueChanged"/>
+        <Slider x:Name="SliderRefCamExposure" HorizontalAlignment="Left" Margin="586,74,0,0" VerticalAlignment="Top" Width="144" Maximum="100" ValueChanged="SliderRefCamExposure_ValueChanged"/>
+        <ComboBox x:Name="ComboBoxRefCamAwbMode" HorizontalAlignment="Left" Margin="474,113,0,0" VerticalAlignment="Top" Width="256" SelectionChanged="ComboBoxRefCamAwbMode_SelectionChanged">
+            <ComboBoxItem Name="RefAwbManual">Manual</ComboBoxItem>
+            <ComboBoxItem Name="RefAwbGreyworld">Grey World</ComboBoxItem>
+            <ComboBoxItem Name="RefAwbAdobeRgbD65">Temperature - Adobe RGB D65</ComboBoxItem>
+            <ComboBoxItem Name="RefAwbCieRgbE">Temperature - CIE RGB E</ComboBoxItem>
+            <ComboBoxItem Name="RefAwbEciRgbD50">Temperature - ECI RGB D50</ComboBoxItem>
+            <ComboBoxItem Name="RefAwbSrgbD50">Temperature - SRGB D50</ComboBoxItem>
+            <ComboBoxItem Name="RefAwbSrgbD65">Temperature - SRGB D65</ComboBoxItem>
+        </ComboBox>
+        <Slider x:Name="SliderRefCamRed" HorizontalAlignment="Left" Margin="586,150,0,0" VerticalAlignment="Top" Width="144" ValueChanged="SliderRefCamRed_ValueChanged"/>
+        <Slider x:Name="SliderRefCamGreen" HorizontalAlignment="Left" Margin="586,177,0,0" VerticalAlignment="Top" Width="144" ValueChanged="SliderRefCamGreen_ValueChanged"/>
+        <Slider x:Name="SliderRefCamBlue" HorizontalAlignment="Left" Margin="586,204,0,0" VerticalAlignment="Top" Width="144" ValueChanged="SliderRefCamBlue_ValueChanged"/>
+        <Label Content="Red Gain:" HorizontalAlignment="Left" Height="30" Margin="515,150,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+        <Label Content="Green Gain:" HorizontalAlignment="Left" Height="30" Margin="503,177,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+        <Label Content="Blue Gain:" HorizontalAlignment="Left" Height="30" Margin="512,204,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+        <Button x:Name="ButtonFilterPosition1" Content="Position 1" HorizontalAlignment="Left" Margin="334,294,0,0" VerticalAlignment="Top" Width="75" Click="ButtonFilterPosition1_Click"/>
+        <Button x:Name="ButtonFilterPosition2" Content="Position 2" HorizontalAlignment="Left" Margin="334,321,0,0" VerticalAlignment="Top" Width="75" Click="ButtonFilterPosition2_Click"/>
+        <Button x:Name="ButtonFilterPosition3" Content="Position 3" HorizontalAlignment="Left" Margin="334,348,0,0" VerticalAlignment="Top" Width="75" Click="ButtonFilterPosition3_Click"/>
+        <Button x:Name="ButtonFilterPosition4" Content="Position 4" HorizontalAlignment="Left" Margin="334,375,0,0" VerticalAlignment="Top" Width="75" Click="ButtonFilterPosition4_Click"/>
+        <Label x:Name="LabelFilterPosition" Content="Filter wheel position" HorizontalAlignment="Left" Margin="298,429,0,0" VerticalAlignment="Top" Width="162"/>
+        <Button x:Name="ButtonMirrorEmccd" Content="For Emccd" HorizontalAlignment="Left" Margin="556,316,0,0" VerticalAlignment="Top" Width="100" Click="ButtonMirrorEmccd_Click"/>
+        <Button x:Name="ButtonMirrorReference" Content="For Reference" HorizontalAlignment="Left" Margin="556,343,0,0" VerticalAlignment="Top" Width="100" Click="ButtonMirrorReference_Click"/>
+        <Label x:Name="LabelMirrorStatus" Content="Mirror position" HorizontalAlignment="Left" Margin="532,408,0,0" VerticalAlignment="Top" Width="156"/>
+        <Label Content="Gain Type" HorizontalAlignment="Left" Margin="19,225,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="ComboBoxEmccdGainType" HorizontalAlignment="Left" Margin="87,229,0,0" VerticalAlignment="Top" Width="177" SelectionChanged="ComboBoxEmccdGainType_SelectionChanged">
+            <ComboBoxItem Name="EmccdGainEmccd">Electron-multiplying CCD</ComboBoxItem>
+            <ComboBoxItem Name="EmccdGainConventional">Conventional CCD</ComboBoxItem>
+        </ComboBox>
+        <Label Content="Pre-Amp" HorizontalAlignment="Left" Margin="19,254,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="ComboBoxEmccdPreAmp" HorizontalAlignment="Left" Margin="87,256,0,0" VerticalAlignment="Top" Width="177">
+            <ComboBoxItem Name="EmccdPreampGain1">Gain 1</ComboBoxItem>
+            <ComboBoxItem Name="EmccdPreampGain2">Gain 2</ComboBoxItem>
+            <ComboBoxItem Name="EmccdPreampGain3">Gain 3</ComboBoxItem>
+        </ComboBox>
+        <Label Content="EMCCD Gain" HorizontalAlignment="Left" Margin="13,285,0,0" VerticalAlignment="Top"/>
+        <Slider x:Name="SliderEmccdGain" HorizontalAlignment="Left" Margin="87,289,0,0" VerticalAlignment="Top" Width="177" Maximum="300" Minimum="1"/>
+        <Label Content="Shutter" HorizontalAlignment="Left" Margin="25,312,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="ComboBoxEmccdShutter" HorizontalAlignment="Left" Margin="87,316,0,0" VerticalAlignment="Top" Width="177">
+            <ComboBoxItem Name="EmccdShutterAuto">Automatic - use caution</ComboBoxItem>
+            <ComboBoxItem Name="EmccdShutterClosed">Always closed</ComboBoxItem>
+            <ComboBoxItem Name="EmccdShutterOpen">Always open</ComboBoxItem>
+        </ComboBox>
+        <CheckBox x:Name="CheckBoxEmccdStabilisation" Content="Require stable temperature" HorizontalAlignment="Left" Margin="19,399,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="ButtonEmccdCool" Content="Cool" HorizontalAlignment="Left" Margin="188,370,0,0" VerticalAlignment="Top" Width="75" Click="ButtonEmccdCool_Click"/>
+        <Button x:Name="ButtonEmccdWarm" Content="Warm" HorizontalAlignment="Left" Margin="189,343,0,0" VerticalAlignment="Top" Width="75" Click="ButtonEmccdWarm_Click"/>
+        <TextBox x:Name="TextboxEmccdTemp" HorizontalAlignment="Left" Height="23" Margin="99,371,0,0" TextWrapping="Wrap" Text="Target Temp" VerticalAlignment="Top" Width="85" LostFocus="TextboxEmccdTemp_LostFocus"/>
+        <Label Content="Target Temp" HorizontalAlignment="Left" Margin="13,369,0,0" VerticalAlignment="Top" Width="86"/>
+        <Label Content="Current Temp" HorizontalAlignment="Left" Margin="13,341,0,0" VerticalAlignment="Top" Width="86"/>
+        <Label x:Name="LabelEmccdCurrentTemp" Content="Current Temp" HorizontalAlignment="Left" Margin="99,343,0,0" VerticalAlignment="Top" Width="85" Background="#FF701F1F"/>
+        <Button x:Name="ButtonDoorLock" Content="Lock" HorizontalAlignment="Left" Margin="969,661,0,0" VerticalAlignment="Top" Width="65" Click="ButtonDoorLock_Click"/>
+        <Button x:Name="ButtonDoorUnlock" Content="Unlock" HorizontalAlignment="Left" Margin="969,688,0,0" VerticalAlignment="Top" Width="65" Click="ButtonDoorUnlock_Click"/>
+        <Label x:Name="LabelDoorIsLocked" Content="isLocked?" HorizontalAlignment="Left" Margin="973,715,0,0" VerticalAlignment="Top" Width="65"/>
+        <Label x:Name="LabelDoorLockIsOk" Content="isOk?" HorizontalAlignment="Left" Margin="973,746,0,0" VerticalAlignment="Top" Width="65"/>
+        <Button x:Name="ButtonSerialSet" Content="Set" HorizontalAlignment="Left" Margin="761,371,0,0" VerticalAlignment="Top" Width="60" Click="ButtonSerialSet_Click"/>
+        <TextBox x:Name="TextBoxSerialNumber" HorizontalAlignment="Left" Height="22" Margin="761,340,0,0" TextWrapping="Wrap" Text="current serial number" VerticalAlignment="Top" Width="125"/>
+        <Button x:Name="ButtonLightsOn" Content="Lights On" HorizontalAlignment="Left" Margin="796,554,0,0" VerticalAlignment="Top" Width="75" Click="ButtonLightsOn_Click"/>
+        <Button x:Name="ButtonLightsOff" Content="Lights Off" HorizontalAlignment="Left" Margin="796,581,0,0" VerticalAlignment="Top" Width="75" Click="ButtonLightsOff_Click"/>
+        <Label x:Name="LabelLightsStatus" Content="Off" HorizontalAlignment="Left" Margin="796,608,0,0" VerticalAlignment="Top"/>
+        <Label Content="Horizontal Shift Speed" HorizontalAlignment="Left" Margin="19,420,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="ComboBoxEmccdHss" HorizontalAlignment="Left" Margin="153,420,0,0" VerticalAlignment="Top" Width="112"/>
+        <Label Content="Vertical Shift Speed" HorizontalAlignment="Left" Margin="35,447,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="ComboBoxEmccdVss" HorizontalAlignment="Left" Margin="152,447,0,0" VerticalAlignment="Top" Width="112">
+            <ComboBoxItem Name="EmccdVss0300Ns">0.3 us</ComboBoxItem>
+            <ComboBoxItem Name="EmccdVss0500Ns">0.5 us</ComboBoxItem>
+            <ComboBoxItem Name="EmccdVss0900Ns">0.9 us</ComboBoxItem>
+            <ComboBoxItem Name="EmccdVss1700Ns">1.7 us</ComboBoxItem>
+            <ComboBoxItem Name="EmccdVss3300Ns">3.3 us</ComboBoxItem>
+        </ComboBox>
+        <Label Content="Vertical Clocking Voltage" HorizontalAlignment="Left" Margin="4,470,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="ComboBoxEmccdVcv" HorizontalAlignment="Left" Margin="153,474,0,0" VerticalAlignment="Top" Width="112">
+            <ComboBoxItem Name="EmccdVcvNormal">Normal</ComboBoxItem>
+            <ComboBoxItem Name="EmccdVcvPlus1">Plus 1</ComboBoxItem>
+            <ComboBoxItem Name="EmccdVcvPlus2">Plus 2</ComboBoxItem>
+            <ComboBoxItem Name="EmccdVcvPlus3">Plus 3</ComboBoxItem>
+            <ComboBoxItem Name="EmccdVcvPlus4">Plus 4</ComboBoxItem>
+        </ComboBox>
+        <Button x:Name="ButtonEmccdApply" Content="Apply Settings" HorizontalAlignment="Left" Margin="153,779,0,0" VerticalAlignment="Top" Width="99" Click="ButtonEmccdApply_Click"/>
+        <Label Content="Exposure Time (s)" HorizontalAlignment="Left" Margin="45,499,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextBoxEmccdExposure" HorizontalAlignment="Left" Height="23" Margin="153,501,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="112"/>
+        <TextBox x:Name="TextBoxEmccdFirstCol" HorizontalAlignment="Left" Height="23" Margin="152,529,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="112" LostFocus="TextBoxEmccdCol_LostFocus"/>
+        <TextBox x:Name="TextBoxEmccdLastCol" HorizontalAlignment="Left" Height="23" Margin="153,557,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="112" LostFocus="TextBoxEmccdCol_LostFocus"/>
+        <TextBox x:Name="TextBoxEmccdFirstRow" HorizontalAlignment="Left" Height="23" Margin="153,585,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="112" LostFocus="TextBoxEmccdRow_LostFocus"/>
+        <TextBox x:Name="TextBoxEmccdLastRow" HorizontalAlignment="Left" Height="23" Margin="153,613,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="112" LostFocus="TextBoxEmccdRow_LostFocus"/>
+        <Label Content="First column" HorizontalAlignment="Left" Margin="77,527,0,0" VerticalAlignment="Top"/>
+        <Label Content="Last column" HorizontalAlignment="Left" Margin="74,554,0,0" VerticalAlignment="Top"/>
+        <Label Content="First row" HorizontalAlignment="Left" Margin="93,583,0,0" VerticalAlignment="Top"/>
+        <Label Content="Last row" HorizontalAlignment="Left" Margin="94,610,0,0" VerticalAlignment="Top"/>
+        <Label Content="Horizontal Bin Size" HorizontalAlignment="Left" Margin="39,637,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="ComboBoxEmccdHBinSize" HorizontalAlignment="Left" Margin="153,641,0,0" VerticalAlignment="Top" Width="111">
+            <ComboBoxItem x:Name="HBin0" Content="1"/>
+            <ComboBoxItem x:Name="HBin1" Content="2"/>
+            <ComboBoxItem x:Name="HBin2" Content="4"/>
+            <ComboBoxItem x:Name="HBin3" Content="8"/>
+            <ComboBoxItem x:Name="HBin4" Content="16"/>
+            <ComboBoxItem x:Name="HBin5" Content="32"/>
+            <ComboBoxItem x:Name="HBin6" Content="64"/>
+            <ComboBoxItem x:Name="HBin7" Content="128"/>
+            <ComboBoxItem x:Name="HBin8" Content="256"/>
+        </ComboBox>
+        <Label Content="Vertical Bin Size" HorizontalAlignment="Left" Margin="54,665,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="ComboBoxEmccdVBinSize" HorizontalAlignment="Left" Margin="153,668,0,0" VerticalAlignment="Top" Width="111">
+            <ComboBoxItem x:Name="VBin0" Content="1"/>
+            <ComboBoxItem x:Name="VBin1" Content="2"/>
+            <ComboBoxItem x:Name="VBin2" Content="4"/>
+            <ComboBoxItem x:Name="VBin3" Content="8"/>
+            <ComboBoxItem x:Name="VBin4" Content="16"/>
+            <ComboBoxItem x:Name="VBin5" Content="32"/>
+            <ComboBoxItem x:Name="VBin6" Content="64"/>
+            <ComboBoxItem x:Name="VBin7" Content="128"/>
+            <ComboBoxItem x:Name="VBin8" Content="256"/>
+        </ComboBox>
+        <Label Content="Cooling Timeout (s)" HorizontalAlignment="Left" Margin="33,693,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextBoxEmccdCoolTimeout" HorizontalAlignment="Left" Height="23" Margin="153,695,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="111" LostFocus="TextBoxEmccdCoolTimeout_LostFocus"/>
+        <Button x:Name="ButtonCancel" Content="Cancel All" HorizontalAlignment="Left" Margin="53,116,0,0" VerticalAlignment="Top" Width="151" Height="56" FontSize="20" Click="ButtonCancel_Click"/>
+        <Button x:Name="ButtonEmccdLoad" Content="Load Settings" HorizontalAlignment="Left" Margin="35,779,0,0" VerticalAlignment="Top" Width="102" Click="ButtonEmccdLoad_Click"/>
+        <Button x:Name="ButtonFilterPositionHome" Content="Home" HorizontalAlignment="Left" Margin="334,402,0,0" VerticalAlignment="Top" Width="75" Click="ButtonFilterPositionHome_Click"/>
+        <Button x:Name="ButtonMirrorHome" Content="Home" HorizontalAlignment="Left" Margin="556,370,0,0" VerticalAlignment="Top" Width="100" Click="ButtonMirrorHome_Click"/>
+        <Button x:Name="ButtonSerialGet" Content="Get" HorizontalAlignment="Left" Margin="826,371,0,0" VerticalAlignment="Top" Width="60" Click="ButtonSerialGet_Click"/>
+        <TextBox x:Name="TextBoxEmccdKineticTimeS" HorizontalAlignment="Left" Height="23" Margin="153,723,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="110" LostKeyboardFocus="TextBoxEmccdKineticTime_LostKeyboardFocus"/>
+        <TextBox x:Name="TextBoxEmccdKineticCount" HorizontalAlignment="Left" Height="23" Margin="153,751,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="111" LostKeyboardFocus="TextBoxEmccdKineticCount_LostKeyboardFocus"/>
+        <Label Content="Kinetic cycle time (s)" HorizontalAlignment="Left" Margin="19,721,0,0" VerticalAlignment="Top"/>
+        <Label Content="Kinetic series count" HorizontalAlignment="Left" Margin="35,749,0,0" VerticalAlignment="Top"/>
+        <StackPanel HorizontalAlignment="Left" Height="170" Margin="787,29,0,0" VerticalAlignment="Top" Width="137" >
+            <GroupBox Header="Status" Margin="0 0 10 0">
+                <GroupBox.Resources>
+                    <local:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+                </GroupBox.Resources>
+                <StackPanel>
+                    <RadioButton Content="Ready" GroupName="Status" IsChecked="{Binding Path=Indicator, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static sa:IndicatorStatus.StateReady}}" />
+                    <RadioButton Content="Error" GroupName="Status" IsChecked="{Binding Path=Indicator, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static sa:IndicatorStatus.StateError}}" />
+                    <RadioButton Content="Cooling/Warming" GroupName="Status" IsChecked="{Binding Path=Indicator, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static sa:IndicatorStatus.StateCoolingWarming}}" />
+                    <RadioButton Content="Scanning" GroupName="Status" IsChecked="{Binding Path=Indicator, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static sa:IndicatorStatus.StateScanning}}" />
+                </StackPanel>
+            </GroupBox>
+            <CheckBox Content="Door locked" IsChecked="{Binding IndicatorDoorLocked, Mode=TwoWay}" />
+            <CheckBox Content="Specimen detected" IsChecked="{Binding IndicatorSpecimenHolderPresent, Mode=TwoWay}" />
+            <CheckBox x:Name="CheckBoxHeartbeatAuto" Content="Automatic Heartbeat" IsChecked="{Binding AutomaticHeartbeat}"/> 
+            <Button x:Name="ButtonKickWdt" Content="Kick Heartbeat" Click="ButtonKickWdtClick" Width="100"/>
+        </StackPanel>
+        <GroupBox HorizontalAlignment="Left" Margin="700,738,0,0" VerticalAlignment="Top" Width="250" BorderThickness="0">
+            <StackPanel Orientation="Horizontal">
+                <local:BinaryOut Caption="Specimen" IsSet="{Binding IsSpecimenPresent}" Margin="0 0 25 0"/>
+                <local:BinaryOut Caption="Drawer closed" IsSet="{Binding IsDrawerClosed}" />
+            </StackPanel>
+        </GroupBox>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Width="93" Margin="945,10,0,0">
+            <CheckBox Content="Debug LED 1" IsChecked="{Binding OutputDebugLed1, Mode=TwoWay}" />
+            <CheckBox Content="Debug LED 2" IsChecked="{Binding OutputDebugLed2, Mode=TwoWay}" />
+            <CheckBox Content="Debug LED 3" IsChecked="{Binding OutputDebugLed3, Mode=TwoWay}" />
+            <CheckBox Content="Debug LED 4" IsChecked="{Binding OutputDebugLed4, Mode=TwoWay}" />
+
+            <GroupBox Header="I2C Bus" Padding="0 5" Margin="0 50 0 0">
+                <StackPanel>
+                    <local:BinaryOut Caption="OK" IsSet="{Binding IsI2CBusOk}" LedColor="Green" />
+                    <Button x:Name="ButtonResetInstrumentHardware" Content="Reset" Click="ButtonResetInstrumentHardware_Click" />
+                </StackPanel>
+            </GroupBox>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="316,527,227,119">
+            <GroupBox Header="Board 1">
+                <StackPanel Orientation="Horizontal">
+                    <Slider x:Name="Board1RSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Orientation="Vertical" Height="136" Maximum="255" SmallChange="1" ValueChanged="Board1RSlider_ValueChanged"/>
+                    <Slider x:Name="Board1GSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Orientation="Vertical" Height="136" Maximum="255" SmallChange="1" ValueChanged="Board1GSlider_ValueChanged"/>
+                    <Slider x:Name="Board1BSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Orientation="Vertical" Height="136" Maximum="255" SmallChange="1" ValueChanged="Board1BSlider_ValueChanged"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Board 2">
+                <StackPanel Orientation="Horizontal">
+                    <Slider x:Name="Board2RSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Orientation="Vertical" Height="136" Maximum="255" SmallChange="1" ValueChanged="Board2RSlider_ValueChanged"/>
+                    <Slider x:Name="Board2GSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Orientation="Vertical" Height="136" Maximum="255" SmallChange="1" ValueChanged="Board2GSlider_ValueChanged"/>
+                    <Slider x:Name="Board2BSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Orientation="Vertical" Height="136" Maximum="255" SmallChange="1" ValueChanged="Board2BSlider_ValueChanged"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Board 3">
+                <StackPanel Orientation="Horizontal">
+                    <Slider x:Name="Board3RSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Orientation="Vertical" Height="136" Maximum="255" SmallChange="1" ValueChanged="Board3RSlider_ValueChanged"/>
+                    <Slider x:Name="Board3GSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Orientation="Vertical" Height="136" Maximum="255" SmallChange="1" ValueChanged="Board3GSlider_ValueChanged"/>
+                    <Slider x:Name="Board3BSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Orientation="Vertical" Height="136" Maximum="255" SmallChange="1" ValueChanged="Board3BSlider_ValueChanged"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Board 4">
+                <StackPanel Orientation="Horizontal">
+                    <Slider x:Name="Board4RSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Orientation="Vertical" Height="136" Maximum="255" SmallChange="1" ValueChanged="Board4RSlider_ValueChanged"/>
+                    <Slider x:Name="Board4GSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Orientation="Vertical" Height="136" Maximum="255" SmallChange="1" ValueChanged="Board4GSlider_ValueChanged"/>
+                    <Slider x:Name="Board4BSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Orientation="Vertical" Height="136" Maximum="255" SmallChange="1" ValueChanged="Board4BSlider_ValueChanged"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Master">
+                <Slider x:Name="LedMasterSlider" HorizontalAlignment="Center" VerticalAlignment="Top" Width="25" Orientation="Vertical" Height="136" Maximum="255" SmallChange="1" ValueChanged="LedMasterSlider_ValueChanged"/>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,7 @@
+﻿<Window x:Class="LightpathApp.EngScrollWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Lightpoint Medical System - Engineering Window"  WindowState="Maximized" ResizeMode="NoResize">
+        <ScrollViewer x:Name="EIViewPort" Height="Auto" Width="Auto" HorizontalScrollBarVisibility="Auto">
+        </ScrollViewer>
+</Window>

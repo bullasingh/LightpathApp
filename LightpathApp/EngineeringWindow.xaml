@@ -1,0 +1,60 @@
+﻿<Window x:Class="LightpathApp.EngineeringWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Lightpoint Medical System - Engineering"
+        WindowState="Maximized" 
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Style x:Key="lightPointFontStyle" TargetType="Control">
+            <Setter Property="FontFamily"  Value="Comic Sans MS"/>
+        </Style>
+        <Style x:Key="buttonStyle" TargetType="Control">
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily"  Value="Comic Sans MS"/>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}"
+                                BorderThickness="4" BorderBrush="Black">
+                            <ContentPresenter Margin="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"  Value="True">
+                    <Setter Property="Background" Value="Aquamarine" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="textBoxStyle" TargetType="Control">
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily"  Value="Comic Sans MS"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"  Value="True">
+                    <Setter Property="Background" Value="Aquamarine" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <DockPanel LastChildFill="False">
+            <StackPanel Orientation="Vertical">
+                <GroupBox x:Name="fan" BorderThickness="4" BorderBrush="Black" Header="FAN">
+                <StackPanel Orientation="Vertical">
+                    <Button Content="Fan On" Name="turnFanOn" Margin="10" Style="{DynamicResource buttonStyle}" FontWeight="Bold" Click="TurnFanOn_Click" />
+                    <Button Content="Fan Off" Name="turnFanOff" Margin="10" Style="{DynamicResource buttonStyle}" FontWeight="Bold" Click="TurnFanOff_Click" />
+                    <TextBox x:Name="fanState" Margin="10" Text="Fan is Off" FontWeight="Bold" />
+                </StackPanel>
+            </GroupBox>
+            <Button Content="Cancel All" Margin="10" Style="{DynamicResource buttonStyle}" FontWeight="Bold" Click="CancelAll_Click" FontSize="18" />
+        </StackPanel>
+            </DockPanel>
+    </Grid>
+</Window>

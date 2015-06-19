@@ -1,0 +1,34 @@
+﻿<!--
+*************************************************************************** 
+** (c) LightPoint Medical, 2015.  All rights reserved.   
+**  
+** This software is the property of LightPoint Medical and may 
+** not be copied or reproduced otherwise than on to a single hard disk for 
+** backup or archival purposes.  The source code is confidential  
+** information and must not be disclosed to third parties or used without  
+** the express written permission of LightPoint Medical. 
+**
+** Repository path  : $HeadURL: https://svn.sagentia.com/Lightpoint/Lightpath/trunk/SpecimenAnalyser/EngineeringInterface/UserControls/BinaryOut.xaml $
+** Last committed   : $Revision: 634 $
+** Last changed by  : $Author: sml1 $
+** Last changed date: $Date: 2015-02-04 18:26:11 +0000 (Wed, 04 Feb 2015) $
+**
+**
+***************************************************************************
+-->
+<UserControl x:Class="LightpathApp.BinaryOut"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="15" d:DesignWidth="100">
+    <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Ellipse Width="15" Height="15" Stroke="Black"  Fill="{Binding FillColor}" Grid.Column="0" HorizontalAlignment="Left"/>
+        <Label Content="{Binding Caption}" Grid.Column="1" />
+    </Grid>
+</UserControl>

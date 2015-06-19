@@ -1,0 +1,92 @@
+﻿<Window x:Class="LightpathApp.EngWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Lightpoint Medical System - Advanced Engineering"
+        WindowState="Maximized" 
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Style x:Key="lightPointFontStyle" TargetType="Control">
+            <Setter Property="FontFamily"  Value="Comic Sans MS"/>
+        </Style>
+        <Style x:Key="buttonStyle" TargetType="Control">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily"  Value="Comic Sans MS"/>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}"
+                                BorderThickness="4" BorderBrush="Black">
+                            <ContentPresenter Margin="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"  Value="True">
+                    <Setter Property="Background" Value="Aquamarine" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="textBoxStyle" TargetType="Control">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily"  Value="Comic Sans MS"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"  Value="True">
+                    <Setter Property="Background" Value="Aquamarine" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="LightSkyBlue"  Offset="0"/>
+                <GradientStop Color="White" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <StackPanel Orientation="Vertical">
+            <GroupBox Header="Camera Configuration and Tests" Panel.ZIndex="1" HorizontalAlignment="Center" Margin="20" VerticalAlignment="Top" Style="{DynamicResource lightPointFontStyle}" FontWeight="Bold">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Name="andorCameraTests" Content="Andor Camera" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" Style="{DynamicResource buttonStyle}" Click="AndorCameraTests_Click" />
+                    <Button  Name="referenceCameraTests" Content="Reference Camera" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" Style="{DynamicResource buttonStyle}" Click="ReferenceCameraTests_Click" />
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Filter Configuration and Tests" Panel.ZIndex="1" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Top" Style="{DynamicResource lightPointFontStyle}" FontWeight="Bold">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Name="filterTests" Content="Filter Wheel" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" Style="{DynamicResource buttonStyle}" Click="FilterTests_Click" />
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Light Configuration and Tests" Panel.ZIndex="1" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Top" Style="{DynamicResource lightPointFontStyle}" FontWeight="Bold">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Name="internalLightsTests" Content="Internal Lights" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" Style="{DynamicResource buttonStyle}" Click="InternalLightsTests_Click"  />
+                    <Button Name="indicatorLEDTests" Content="Indicator LEDs" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" Style="{DynamicResource buttonStyle}" Click="IndicatorLEDTests_Click"  />
+                    <Button Name="mirrorTests" Content="Mirror" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" Style="{DynamicResource buttonStyle}" Click="MirrorTests_Click" />
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Other Configuration and Tests" Panel.ZIndex="1" HorizontalAlignment="Center" Margin="20" VerticalAlignment="Top" Style="{DynamicResource lightPointFontStyle}" FontWeight="Bold">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="Door" Name="doorTests" Margin="10" Style="{DynamicResource buttonStyle}" Click="DoorTests_Click"  />
+                    <Button Content="Specimen Holder Drawer" Name="holderTests" Margin="10" Style="{DynamicResource buttonStyle}" Click="HolderTests_Click" />
+                    <Button Content="Casing" Name="casingTests" Margin="10" Style="{DynamicResource buttonStyle}" Click="CasingTests_Click" />
+                    <Button Content="Keep-Alive/Heartbeat" Name="heartbeatTests" Margin="10" Style="{DynamicResource buttonStyle}" Click="HeartbeatTests_Click" />
+                    <Button Content="Fan" Name="fanTests" Margin="10" Style="{DynamicResource buttonStyle}" Click="FanTests_Click" />
+                </StackPanel>
+            </GroupBox>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Serial Number" Name="serialNumber" Margin="10" Style="{DynamicResource buttonStyle}" HorizontalAlignment="Center" Click="SerialNumber_Click" />
+                <Button Content="Exit Eng" Name="exitEng" Margin="10" Style="{DynamicResource buttonStyle}" HorizontalAlignment="Center" Click="ExitEng_Click" />
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</Window>

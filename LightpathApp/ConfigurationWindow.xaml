@@ -1,0 +1,200 @@
+﻿<Window x:Class="LightpathApp.ConfigurationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="LightPointMedical Speciman Analyser" 
+        WindowState="Maximized" 
+        ResizeMode="NoResize"
+        WindowStyle="None">
+
+    <Window.Resources>
+        <Style x:Key="lightPointFontStyle" TargetType="Control">
+            <Setter Property="FontFamily"  Value="Comic Sans MS"/>
+        </Style>
+        <Style x:Key="buttonStyle" TargetType="Control">
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily"  Value="Comic Sans MS"/>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}"
+                                BorderThickness="4" BorderBrush="Black">
+                            <ContentPresenter Margin="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"  Value="True">
+                    <Setter Property="Background" Value="Green"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="textBoxStyle" TargetType="Control">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily"  Value="Comic Sans MS"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"  Value="True">
+                    <Setter Property="Background" Value="Aquamarine" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+
+    <Grid>
+        <Image Panel.ZIndex="0" Margin="0" Stretch="Fill">
+            <Image.Source>
+                <ImageSource>Proposed GUI_Main.jpg</ImageSource>
+            </Image.Source>
+        </Image>
+        <Image Panel.ZIndex="0" Margin="0" Stretch="Fill">
+            <Image.Source>
+                <ImageSource>Proposed GUI_Main.jpg</ImageSource>
+            </Image.Source>
+        </Image>
+        
+        <DockPanel Margin="0,90,0,0">
+            <DockPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="CadetBlue" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </DockPanel.Background>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Gain Type"/>
+                        <ComboBox x:Name="ComboBoxEmccdGainType" Width="177">
+                            <ComboBoxItem Name="EmccdGainEmccd">Electron-multiplying CCD</ComboBoxItem>
+                            <ComboBoxItem Name="EmccdGainConventional">Conventional CCD</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Pre-Amp"/>
+                        <ComboBox x:Name="ComboBoxEmccdPreAmp" Width="177">
+                            <ComboBoxItem Name="EmccdPreampGain1">Gain 1</ComboBoxItem>
+                            <ComboBoxItem Name="EmccdPreampGain2">Gain 2</ComboBoxItem>
+                            <ComboBoxItem Name="EmccdPreampGain3">Gain 3</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="EMCCD Gain"/>
+                        <Slider x:Name="SliderEmccdGain" Width="177" Maximum="300" Minimum="1"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Shutter"/>
+                        <ComboBox x:Name="ComboBoxEmccdShutter" Width="177">
+                            <ComboBoxItem Name="EmccdShutterAuto">Automatic - use caution</ComboBoxItem>
+                            <ComboBoxItem Name="EmccdShutterClosed">Always closed</ComboBoxItem>
+                            <ComboBoxItem Name="EmccdShutterOpen">Always open</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox x:Name="CheckBoxEmccdStabilisation" Content="Require stable temperature" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Target Temp" Width="86"/>
+                        <TextBox x:Name="TextboxEmccdTemp" Height="23" TextWrapping="Wrap" Text="Target Temp" Width="85"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Horizontal Shift Speed" />
+                        <ComboBox x:Name="ComboBoxEmccdHss" Width="112"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Vertical Shift Speed" />
+                        <ComboBox x:Name="ComboBoxEmccdVss" Width="112">
+                            <ComboBoxItem Name="EmccdVss0300Ns">0.3 us</ComboBoxItem>
+                            <ComboBoxItem Name="EmccdVss0500Ns">0.5 us</ComboBoxItem>
+                            <ComboBoxItem Name="EmccdVss0900Ns">0.9 us</ComboBoxItem>
+                            <ComboBoxItem Name="EmccdVss1700Ns">1.7 us</ComboBoxItem>
+                            <ComboBoxItem Name="EmccdVss3300Ns">3.3 us</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Vertical Clocking Voltage"/>
+                        <ComboBox x:Name="ComboBoxEmccdVcv" Width="112">
+                            <ComboBoxItem Name="EmccdVcvNormal">Normal</ComboBoxItem>
+                            <ComboBoxItem Name="EmccdVcvPlus1">Plus 1</ComboBoxItem>
+                            <ComboBoxItem Name="EmccdVcvPlus2">Plus 2</ComboBoxItem>
+                            <ComboBoxItem Name="EmccdVcvPlus3">Plus 3</ComboBoxItem>
+                            <ComboBoxItem Name="EmccdVcvPlus4">Plus 4</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Exposure Time (s)" />
+                            <TextBox x:Name="TextBoxEmccdExposure" TextWrapping="Wrap" Text="TextBox" Width="112"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="First column" />
+                            <TextBox x:Name="TextBoxEmccdFirstCol" TextWrapping="Wrap" Text="TextBox" Width="112" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Last column" />
+                            <TextBox x:Name="TextBoxEmccdLastCol" TextWrapping="Wrap" Text="TextBox" Width="112" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="First row" />
+                            <TextBox x:Name="TextBoxEmccdFirstRow" TextWrapping="Wrap" Text="TextBox" Width="112" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Last row" />
+                            <TextBox x:Name="TextBoxEmccdLastRow" TextWrapping="Wrap" Text="TextBox" Width="112"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Horizontal Bin Size" />
+                        <ComboBox x:Name="ComboBoxEmccdHBinSize" Width="111">
+                            <ComboBoxItem x:Name="HBin0" Content="1"/>
+                            <ComboBoxItem x:Name="HBin1" Content="2"/>
+                            <ComboBoxItem x:Name="HBin2" Content="4"/>
+                            <ComboBoxItem x:Name="HBin3" Content="8"/>
+                            <ComboBoxItem x:Name="HBin4" Content="16"/>
+                            <ComboBoxItem x:Name="HBin5" Content="32"/>
+                            <ComboBoxItem x:Name="HBin6" Content="64"/>
+                            <ComboBoxItem x:Name="HBin7" Content="128"/>
+                            <ComboBoxItem x:Name="HBin8" Content="256"/>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Vertical Bin Size" />
+                        <ComboBox x:Name="ComboBoxEmccdVBinSize" Width="111">
+                            <ComboBoxItem x:Name="VBin0" Content="1"/>
+                            <ComboBoxItem x:Name="VBin1" Content="2"/>
+                            <ComboBoxItem x:Name="VBin2" Content="4"/>
+                            <ComboBoxItem x:Name="VBin3" Content="8"/>
+                            <ComboBoxItem x:Name="VBin4" Content="16"/>
+                            <ComboBoxItem x:Name="VBin5" Content="32"/>
+                            <ComboBoxItem x:Name="VBin6" Content="64"/>
+                            <ComboBoxItem x:Name="VBin7" Content="128"/>
+                            <ComboBoxItem x:Name="VBin8" Content="256"/>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Cooling Timeout (s)" />
+                        <TextBox x:Name="TextBoxEmccdCoolTimeout" TextWrapping="Wrap" Text="TextBox" Width="111" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Kinetic cycle time (s)" />
+                        <TextBox x:Name="TextBoxEmccdKineticTimeS" TextWrapping="Wrap" Text="TextBox"  Width="110" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Kinetic series count" />
+                        <TextBox x:Name="TextBoxEmccdKineticCount" TextWrapping="Wrap" Text="TextBox"  Width="111" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="ButtonEmccdApply" Content="Apply Settings" Style="{DynamicResource buttonStyle}"/>
+                        <Button x:Name="ButtonCancel" Content="Cancel All" Style="{DynamicResource buttonStyle}" Click="ButtonCancel_Click"/>
+                        <Button x:Name="ButtonEmccdLoad" Content="Load Settings" Style="{DynamicResource buttonStyle}"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>

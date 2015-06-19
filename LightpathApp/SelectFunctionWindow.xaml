@@ -1,0 +1,62 @@
+﻿<Window x:Class="LightpathApp.SelectFunctionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="LightPointMedical Speciman Analyser" 
+        WindowState="Maximized" 
+        ResizeMode="NoResize"
+        WindowStyle="None">
+
+    <Window.Resources>
+        <Style x:Key="lightPointFontStyle" TargetType="Control">
+            <Setter Property="FontFamily"  Value="Comic Sans MS"/>
+        </Style>
+        <Style x:Key="buttonStyle" TargetType="Control">
+            <Setter Property="Background" Value="Red"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily"  Value="Comic Sans MS"/>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}"
+                                BorderThickness="4" BorderBrush="Black">
+                            <ContentPresenter Margin="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"  Value="True">
+                    <Setter Property="Background" Value="Green"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="textBoxStyle" TargetType="Control">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily"  Value="Comic Sans MS"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"  Value="True">
+                    <Setter Property="Background" Value="Aquamarine" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+
+    <Grid>
+        <Image Panel.ZIndex="0" Margin="0" Stretch="Fill">
+            <Image.Source>
+                <ImageSource>Proposed GUI_Background.jpg</ImageSource>
+            </Image.Source>
+        </Image>
+        <GroupBox Header="Select Function" HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="1" FontWeight="Bold">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Clinical" Name="Clinical" HorizontalAlignment="Center" Margin="10,30,10,20" Style="{DynamicResource buttonStyle}" Click="Clinical_Click"/>
+                <Button Content="Configuration" Name="Configuration" HorizontalAlignment="Center" Margin="10,30,10,20" Style="{DynamicResource buttonStyle}" Click="Configuration_Click"/>
+                <Button Content="Techincal Service" Name="TechincalService" HorizontalAlignment="Center" Margin="10,30,10,20" Style="{DynamicResource buttonStyle}" Click="TechincalService_Click"/>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>
